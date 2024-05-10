@@ -3,30 +3,74 @@ import { FaGoogle, FaFacebook, FaGithub, FaLinkedin } from "react-icons/fa";
 import LoginImg from "../../assets/images/login.svg";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
+import { toast } from "react-toastify";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const { logIn } = useContext(AuthContext);
-
-  const location = useLocation();
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const location = useLocation();
+  const { signInUser, loginWithGoogle, loginWithGithub } =
+    useContext(AuthContext);
 
   const handleLogin = async (e) => {
     e.preventDefault();
     setError("");
-    try {
-      await logIn(email, password);
-      navigate(location?.state ? location?.state : "/");
-    } catch (error) {
-      if (error.code === "auth/email-already-in-use") {
-        setError("Email address is already in use. Please log in instead.");
-      } else {
-        setError(error.message);
-      }
-      console.error(error);
+    const form = new FormData(e.currentTarget);
+    const email = form.get("email");
+    const password = form.get("password").trim();
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email) {
+      setError("Email is required");
+      return;
+    } else if (!emailRegex.test(email)) {
+      setError("Invalid email format");
+      return;
     }
+
+    try {
+      const userCredential = await signInUser(email, password);
+      const user = userCredential.user;
+
+      if (user) {
+        toast.success("Login Successfully");
+        navigate(location?.state ? location.state : "/");
+      }
+    } catch (error) {
+      if (
+        error.code === "auth/wrong-password" ||
+        error.code === "auth/user-not-found"
+      ) {
+        setError("Invalid email or password");
+      } else {
+        setError("Invalid email or password Try again");
+      }
+    }
+  };
+
+  const handleGoogleSignIn = () => {
+    loginWithGoogle()
+      .then(() => {
+        navigate(location?.state ? location.state : "/");
+        toast.success("Google Login Successfully");
+      })
+      .catch((error) => {
+        setError(error.message);
+      });
+  };
+
+  const handleGithubSignIn = () => {
+    loginWithGithub()
+      .then(() => {
+        navigate(location?.state ? location.state : "/");
+        toast.success("GitHub Login successful!");
+      })
+      .catch((error) => {
+        setError(error.message);
+      });
+  };
+
+  const handleSocialLogin = () => {
+    setError("Please try other options. This not builded yet! on processing");
   };
 
   return (
@@ -50,8 +94,6 @@ const Login = () => {
                   name="email"
                   placeholder="email"
                   className="input input-bordered"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
                   required
                 />
               </div>
@@ -64,8 +106,6 @@ const Login = () => {
                   name="password"
                   placeholder="password"
                   className="input input-bordered"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
                   required
                 />
                 <label className="label">
@@ -94,16 +134,28 @@ const Login = () => {
                 Continue with
               </h3>
               <div className="flex items-center flex-wrap justify-evenly w-full ">
-                <button className="btn btn-circle bg-red-600 text-white">
+                <button
+                  onClick={handleGoogleSignIn}
+                  className="btn btn-circle bg-red-600 text-white"
+                >
                   <FaGoogle />
                 </button>
-                <button className="btn btn-circle bg-blue-700 text-white">
+                <button
+                  onClick={handleSocialLogin}
+                  className="btn btn-circle bg-blue-700 text-white"
+                >
                   <FaFacebook />
                 </button>
-                <button className="btn btn-circle bg-gray-800 text-white">
+                <button
+                  onClick={handleGithubSignIn}
+                  className="btn btn-circle bg-gray-800 text-white"
+                >
                   <FaGithub />
                 </button>
-                <button className="btn btn-circle bg-blue-800 text-white">
+                <button
+                  onClick={handleSocialLogin}
+                  className="btn btn-circle bg-blue-800 text-white"
+                >
                   <FaLinkedin />
                 </button>
               </div>

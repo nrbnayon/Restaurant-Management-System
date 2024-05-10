@@ -6,9 +6,11 @@ import { RouterProvider } from "react-router-dom";
 import router from "./Routers/Routers.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <AuthProvider>
-      <RouterProvider router={router} />
-    </AuthProvider>
-  </React.StrictMode>
+  <div className="max-w-7xl mx-auto overflow-hidden">
+    <React.StrictMode>
+      <AuthProvider>
+        <RouterProvider router={router} />
+      </AuthProvider>
+    </React.StrictMode>
+  </div>
 );
