@@ -1,13 +1,13 @@
 import { Link, NavLink } from "react-router-dom";
 import Logo from "/logo.png";
 import { IoSearch, IoClose } from "react-icons/io5";
-import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../../../Provider/AuthProvider";
+import { useEffect, useState } from "react";
 import { Tooltip } from "@mui/material";
+import useAuth from "../../../hooks/useAuth";
 
 const NavBar = () => {
   const [theme, setTheme] = useState("light");
-  const { user, logOut } = useContext(AuthContext);
+  const { user, logOut } = useAuth();
   const handleLogout = () => {
     logOut()
       .then(() => {})
@@ -153,7 +153,7 @@ const NavBar = () => {
                     className={({ isActive }) =>
                       isActive
                         ? " btn text-pink-600 border border-primary"
-                        : "font-bold bg-sky-500 transition-all duration-300 group-hover:w-full"
+                        : "font-bold bg-sky-500 btn btn-outline transition-all duration-300 group-hover:w-full"
                     }
                   >
                     LOGIN
@@ -222,7 +222,7 @@ const NavBar = () => {
               className={({ isActive }) =>
                 isActive
                   ? "hidden md:flex btn text-pink-600 border border-primary"
-                  : "font-bold bg-sky-500 transition-all duration-300 group-hover:w-full"
+                  : "font-bold bg-sky-500 btn btn-outline  transition-all duration-300 group-hover:w-full"
               }
             >
               LOGIN

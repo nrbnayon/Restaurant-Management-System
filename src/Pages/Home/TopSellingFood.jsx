@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import useAxios from "../../hooks/useAxios";
 import { useEffect, useState } from "react";
 
@@ -7,9 +8,8 @@ const TopSellingFood = () => {
   const [topFood, setTopFood] = useState([]);
 
   useEffect(() => {
-    axiosSecure.get("/fakedata.json").then((res) => setTopFood(res.data));
+    axiosSecure.get("/foods").then((res) => setTopFood(res.data));
   }, [axiosSecure]);
-  console.log(topFood);
   return (
     <div>
       {/* Top Selling Food Items Section */}
@@ -27,8 +27,6 @@ const TopSellingFood = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
-        {/* Top Selling Food Item Cards */}
-
         {topFood.slice(0, 6).map((food) => (
           <div
             key={food._id}
@@ -82,9 +80,13 @@ const TopSellingFood = () => {
             </div>
 
             <div className="flex flex-wrap items-center justify-center gap-6 text-sm md:text-base">
-              <button className="rounded-lg bg-[#49B2FF] px-4 py-2 font-sans font-semibold text-white duration-300 hover:scale-105 hover:bg-sky-600">
+              <Link
+                to={`/foodDetails/${food._id}`}
+                state={food.food_name}
+                className="rounded-lg bg-[#49B2FF] px-4 py-2 font-sans font-semibold text-white duration-300 hover:scale-105 hover:bg-sky-600"
+              >
                 Details
-              </button>
+              </Link>
               <button className="flex items-center ">
                 <svg
                   width={35}
@@ -124,10 +126,33 @@ const TopSellingFood = () => {
         ))}
       </div>
 
-      <div className="text-center mt-8">
-        <a href="#" className="text-blue-500 font-semibold hover:text-blue-600">
-          See All
-        </a>
+      <div className="flex justify-center items-center">
+        <Link
+          to="/allFoods"
+          className="group relative flex w-36 items-center rounded-lg border-2 border-secondary p-4 text-sky-300"
+        >
+          <span>See All</span>
+          <span className="absolute right-3 box-content flex w-1/6 justify-center rounded-md bg-blue-500 duration-300 group-hover:w-5/6">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              className="w-10"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g strokeWidth="0"></g>
+              <g strokeLinecap="round" strokeLinejoin="round"></g>
+              <g>
+                <path
+                  d="M4 12H20M20 12L14 6M20 12L14 18"
+                  stroke="#fff"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                ></path>
+              </g>
+            </svg>
+          </span>
+        </Link>
       </div>
     </div>
   );

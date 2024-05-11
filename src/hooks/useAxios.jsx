@@ -1,6 +1,6 @@
 import axios from "axios";
 const axiosSecure = axios.create({
-  baseURL: "http://localhost:5173",
+  baseURL: "http://localhost:8080",
   withCredentials: true,
 });
 

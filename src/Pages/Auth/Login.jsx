@@ -1,16 +1,15 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { FaGoogle, FaFacebook, FaGithub, FaLinkedin } from "react-icons/fa";
 import LoginImg from "../../assets/images/login.svg";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../Provider/AuthProvider";
 import { toast } from "react-toastify";
+import useAuth from "../../hooks/useAuth";
 
 const Login = () => {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
-  const { signInUser, loginWithGoogle, loginWithGithub } =
-    useContext(AuthContext);
+  const { signInUser, loginWithGoogle, loginWithGithub } = useAuth();
 
   const handleLogin = async (e) => {
     e.preventDefault();

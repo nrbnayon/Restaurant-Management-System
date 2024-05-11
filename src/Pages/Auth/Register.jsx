@@ -1,13 +1,13 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { AuthContext } from "../../Provider/AuthProvider";
 import { toast } from "react-toastify";
+import useAuth from "../../hooks/useAuth";
 const Register = () => {
   const navigate = useNavigate();
   const [error, setError] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
-  const { createUser, updateProfile } = useContext(AuthContext);
+  const { createUser, updateProfile } = useAuth();
   const handleRegister = async (e) => {
     e.preventDefault();
 
