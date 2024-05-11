@@ -1,0 +1,82 @@
+[
+  {
+    "food_name": "Sushi Platter",
+    "food_image": "https://i.ibb.co/3Sjv5FM/f1.png",
+    "food_category": "Japanese",
+    "price": 32.99,
+    "quantity": 15,
+    "made_by": "Chef Hiroshi Yamamoto",
+    "food_origin": "Japan",
+    "description": "A delightful assortment of fresh nigiri and maki sushi, including tuna, salmon, shrimp, and avocado rolls. Served with pickled ginger, wasabi, and soy sauce."
+  },
+  {
+    "food_name": "Chicken Tikka Masala",
+    "food_image": "https://i.ibb.co/cLWyN0R/f2.png",
+    "food_category": "Indian",
+    "price": 19.99,
+    "quantity": 20,
+    "made_by": "Chef Rajesh Patel",
+    "food_origin": "India",
+    "description": "Tender pieces of marinated chicken cooked in a rich tomato-based sauce with a blend of aromatic Indian spices. Served with fragrant basmati rice and warm naan bread."
+  },
+  {
+    "food_name": "Grilled Caesar Salad",
+    "food_image": "https://i.ibb.co/FJbtLx1/f3.png",
+    "food_category": "Salad",
+    "price": 12.99,
+    "quantity": 25,
+    "made_by": "Chef Maria Hernandez",
+    "food_origin": "United States",
+    "description": "Crisp romaine lettuce lightly grilled and tossed in creamy Caesar dressing, topped with garlic croutons, shaved Parmesan cheese, and grilled chicken breast."
+  },
+  {
+    "food_name": "Beef Bulgogi",
+    "food_image": "https://i.ibb.co/qdfqzfZ/f4.png",
+    "food_category": "Korean",
+    "price": 22.99,
+    "quantity": 18,
+    "made_by": "Chef Sung-Ho Kim",
+    "food_origin": "South Korea",
+    "description": "Thinly sliced beef marinated in a sweet and savory blend of soy sauce, garlic, sesame oil, and spices, then grilled to perfection. Served with steamed rice and kimchi."
+  },
+  {
+    "food_name": "Caprese Salad",
+    "food_image": "https://i.ibb.co/4tSkGQy/f5.png",
+    "food_category": "Italian",
+    "price": 14.99,
+    "quantity": 30,
+    "made_by": "Chef Giovanni Russo",
+    "food_origin": "Italy",
+    "description": "Fresh ripe tomatoes, creamy mozzarella cheese, and fragrant basil leaves drizzled with extra virgin olive oil and balsamic glaze. A simple yet delicious Italian classic."
+  },
+  {
+    "food_name": "Pho",
+    "food_image": "https://example.com/pho.jpg",
+    "food_category": "Vietnamese",
+    "price": 16.99,
+    "quantity": 22,
+    "made_by": "Chef Nguyen Minh",
+    "food_origin": "Vietnam",
+    "description": "A fragrant beef broth simmered with spices, rice noodles, and tender slices of beef, garnished with fresh herbs, bean sprouts, lime wedges, and chili peppers."
+  },
+  {
+    "food_name": "Margherita Pizza",
+    "food_image": "https://example.com/margherita_pizza.jpg",
+    "food_category": "Pizza",
+    "price": 17.99,
+    "quantity": 28,
+    "made_by": "Chef Antonio Bianchi",
+    "food_origin": "Italy",
+    "description": "Thin-crust pizza topped with fresh tomatoes, mozzarella cheese, basil leaves, and a drizzle of olive oil. A classic Neapolitan pizza that's simple yet bursting with flavor."
+  },
+  {
+    "food_name": "Chocolate Lava Cake",
+    "food_image": "https://example.com/chocolate_lava_cake.jpg",
+    "food_category": "Dessert",
+    "price": 10.99,
+    "quantity": 35,
+    "made_by": "Pastry Chef Sophie Leclair",
+    "food_origin": "France",
+    "description": "A decadent chocolate cake with a molten chocolate center, served warm with a scoop of vanilla ice cream. A heavenly dessert that melts in your mouth."
+  }
+]
