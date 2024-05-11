@@ -3,8 +3,7 @@ import useAxios from "../../hooks/useAxios";
 import BgCard from "../Shared/BgCard/BgCard";
 import { FaSearch } from "react-icons/fa";
 import FoodCard from "./FoodCard";
-import { useNavigation } from "react-router-dom";
-import LoaderSpinner from "../LoaderSpiner/LoaderSpiner";
+import SkeletonLoader from "../LoaderSpiner/SkeletonLoader";
 
 const Card = {
   img: "https://i.ibb.co/qdfqzfZ/f4.png",
@@ -13,26 +12,35 @@ const Card = {
 };
 
 const AllFoods = () => {
-  const navigation = useNavigation();
   const axiosSecure = useAxios();
 
   const [allFoods, setAllFoods] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     axiosSecure
-      .get("/foods")
+      .get(`/foods?name=${searchQuery}`)
       .then((res) => {
         console.log("Response from /foods endpoint:", res.data);
         setAllFoods(res.data);
       })
       .catch((error) => {
         console.error("Error fetching /foods:", error);
+      })
+      .finally(() => {
+        setLoading(false);
       });
-  }, [axiosSecure]);
+  }, [axiosSecure, searchQuery]);
 
-  if (navigation.state === "loading" || !allFoods) {
-    return <LoaderSpinner />;
+  const handleSearch = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
+  if (loading || !allFoods) {
+    return <SkeletonLoader />;
   }
+
   return (
     <div className="my-6">
       <BgCard Card={Card} />
@@ -42,6 +50,8 @@ const AllFoods = () => {
       </p>
       <div className="flex items-center md:w-1/2 mx-auto border border-gray-300 rounded-l-[30px] rounded-r-[30px] overflow-hidden">
         <input
+          value={searchQuery}
+          onChange={handleSearch}
           type="text"
           placeholder="Search for food..."
           className="w-full py-2 px-4 focus:outline-none bg-transparent"
@@ -51,8 +61,6 @@ const AllFoods = () => {
         </button>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
-        {/* Top Selling Food Item Cards */}
-
         {allFoods.map((food) => (
           <FoodCard key={food._id} food={food} />
         ))}

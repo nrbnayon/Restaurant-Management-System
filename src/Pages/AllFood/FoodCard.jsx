@@ -65,8 +65,8 @@ const FoodCard = ({ food }) => {
           >
             {" "}
             <g strokeWidth="0"></g>{" "}
-            <g id="navigateui" strokeLinecap="round" strokeLinejoin="round"></g>{" "}
-            <g id="navigateui">
+            <g strokeLinecap="round" strokeLinejoin="round"></g>{" "}
+            <g>
               {" "}
               <path
                 fillRule="evenodd"

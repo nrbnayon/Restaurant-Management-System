@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import {
   AiOutlineShoppingCart,
   AiOutlineUser,
@@ -16,6 +16,7 @@ const FoodDetails = () => {
 
   const foods = useLoaderData();
   const {
+    _id,
     food_name,
     food_image,
     food_category,
@@ -78,10 +79,14 @@ const FoodDetails = () => {
           <p className="text-gray-700 mb-4" data-aos="fade-up">
             {description}
           </p>
-          <button className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 focus:outline-none">
+          <Link
+            to={`/foodPurchase/${_id}`}
+            state={food_name}
+            className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 focus:outline-none"
+          >
             <AiOutlineShoppingCart className="inline-block mr-2" />
             Purchase
-          </button>
+          </Link>
         </div>
       </div>
     </div>
