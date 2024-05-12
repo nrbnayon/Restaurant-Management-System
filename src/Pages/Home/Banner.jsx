@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 const Banner = () => {
   const [currentSlider, setCurrentSlider] = useState(0);
 
@@ -49,7 +50,7 @@ const Banner = () => {
 
   return (
     <div
-      className="w-full h-60 sm:h-96 md:h-[540px] flex flex-col xl:flex-row items-center justify-center gap-5 lg:gap-10 relative bg-cover before:absolute before:bg-black/50 before:inset-0 transform duration-1000 ease-linear z-50 overflow-hidden"
+      className="w-full h-60 object-cover  sm:h-96 md:h-[540px] flex flex-col xl:flex-row items-center justify-center gap-5 lg:gap-10 relative bg-cover before:absolute before:bg-black/50 before:inset-0 transform duration-1000 ease-linear z-50 overflow-hidden"
       style={{
         backgroundImage: `url(${
           currentSlider === 0
@@ -160,11 +161,13 @@ const Banner = () => {
               ></path>
             </g>
           </svg>
-          <span className="duration-500">ALL FOODS</span>
+          <Link to="/allFoods" className="duration-500">
+            ALL FOODS
+          </Link>
         </button>
       </div>
       {/* slider container */}
-      <div className="w-1/2 ml-auto overflow-hidden  absolute -right-5 lg:-right-16 z-50 px-4 py-10">
+      <div className="w-1/2 ml-auto overflow-hidden object-cover absolute -right-5 lg:-right-16 z-50 px-4 py-10">
         <div
           className="ease-linear duration-300 flex gap-4 items-center"
           style={{
@@ -178,7 +181,7 @@ const Banner = () => {
             <img
               key={inx}
               src={slide.img}
-              className={`h-[300px] sm:h-[400px] lg:h-[500px] min-w-[90px] lg:min-w-[184px]  ${
+              className={`h-[300px] md:h-[400px]   min-w-[90px] lg:min-w-[200px]  ${
                 currentSlider - 1 === inx ? "scale-0" : "scale-100 delay-500"
               } drop-shadow-lg shadow-lg shadow-black bg-black/50 duration-300 rounded-lg z-50`}
               alt={slide.title}

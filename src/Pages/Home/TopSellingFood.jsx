@@ -5,10 +5,10 @@ import { useEffect, useState } from "react";
 const TopSellingFood = () => {
   const axiosSecure = useAxios();
 
-  const [topFood, setTopFood] = useState([]);
+  const [topFoods, setTopFoods] = useState([]);
 
   useEffect(() => {
-    axiosSecure.get("/foods").then((res) => setTopFood(res.data));
+    axiosSecure.get("/topFoods").then((res) => setTopFoods(res.data));
   }, [axiosSecure]);
   return (
     <div>
@@ -27,7 +27,7 @@ const TopSellingFood = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
-        {topFood.slice(0, 6).map((food) => (
+        {topFoods.map((food) => (
           <div
             key={food._id}
             className="mx-auto my-8 max-w-[350px] space-y-6 rounded-xl bg-white px-4 pb-8 pt-4 font-sans shadow-lg dark:bg-[#18181B] transition duration-300 ease-in-out transform hover:scale-105 hover:border-primary"
