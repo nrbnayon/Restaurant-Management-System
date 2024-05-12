@@ -5,6 +5,7 @@ import SkeletonLoader from "../LoaderSpiner/SkeletonLoader";
 import { FaRegUser } from "react-icons/fa";
 import { AiOutlinePlus } from "react-icons/ai";
 import Modal from "./Modal";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Gallery = () => {
   const axiosSecure = useAxios();
@@ -14,6 +15,10 @@ const Gallery = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedFoodImgUrl, setSelectedFoodImgUrl] = useState(null);
   const [feedbacks, setFeedbacks] = useState([]);
+
+  const location = useLocation();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     axiosSecure
@@ -29,18 +34,19 @@ const Gallery = () => {
         setLoading(false);
       });
   }, [axiosSecure]);
+
   useEffect(() => {
     axiosSecure.get(`/feedbacks`).then((res) => {
       setFeedbacks(res.data);
     });
   }, [axiosSecure]);
-  console.log("feedbacks:", feedbacks);
+
   const handleAddButtonClick = (foodImage) => {
     if (user) {
       setModalOpen(true);
       setSelectedFoodImgUrl(foodImage);
     } else {
-      console.log("Redirecting to login page...");
+      navigate("/login", { state: location.pathname });
     }
   };
 
@@ -95,7 +101,7 @@ const Gallery = () => {
 
             <button
               onClick={() => handleAddButtonClick(food.food_image)}
-              className="absolute bottom-4 right-4 flex items-center justify-center w-12 h-12 text-white bg-blue-500 hover:bg-blue-600 rounded-full shadow-md"
+              className="absolute opacity-50 hover:opacity-100 bottom-4 right-4 flex items-center justify-center w-12 h-12 text-white bg-blue-500 hover:bg-blue-600 rounded-full shadow-md"
               title="Add Feedback"
             >
               <AiOutlinePlus />
@@ -107,6 +113,7 @@ const Gallery = () => {
         <Modal
           closeModal={() => setModalOpen(false)}
           feedbackImgUrl={selectedFoodImgUrl}
+          updateFeedbacks={(newFeedbacks) => setFeedbacks(newFeedbacks)}
         />
       )}
     </section>

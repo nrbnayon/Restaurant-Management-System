@@ -3,7 +3,8 @@ import useAxios from "../../hooks/useAxios";
 import useAuth from "../../hooks/useAuth";
 import PropTypes from "prop-types";
 import { toast } from "react-toastify";
-const Modal = ({ closeModal, feedbackImgUrl }) => {
+
+const Modal = ({ closeModal, feedbackImgUrl, updateFeedbacks }) => {
   const { user } = useAuth();
   const axiosSecure = useAxios();
   const [formData, setFormData] = useState({
@@ -24,10 +25,13 @@ const Modal = ({ closeModal, feedbackImgUrl }) => {
     e.preventDefault();
     try {
       await axiosSecure.post("/feedback", formData);
+      const response = await axiosSecure.get("/feedbacks");
+      updateFeedbacks(response.data);
+
       toast.success("Feedback submitted successfully");
       closeModal();
     } catch (error) {
-      toast.warn("Error submitting feedback");
+      toast.error("Error submitting feedback");
     }
   };
 
@@ -86,9 +90,10 @@ const Modal = ({ closeModal, feedbackImgUrl }) => {
               type="text"
               name="feedbackImgUrl"
               value={formData.feedbackImgUrl}
-              onChange={handleChange}
+              //   onChange={handleChange}
               className="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none focus:border-blue-500"
               required
+              readOnly
             />
           </div>
           <button
@@ -102,8 +107,11 @@ const Modal = ({ closeModal, feedbackImgUrl }) => {
     </div>
   );
 };
+
 Modal.propTypes = {
   closeModal: PropTypes.func.isRequired,
   feedbackImgUrl: PropTypes.string,
+  updateFeedbacks: PropTypes.func.isRequired,
 };
+
 export default Modal;

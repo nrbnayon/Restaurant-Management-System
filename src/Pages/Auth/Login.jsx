@@ -9,6 +9,7 @@ const Login = () => {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
+
   const { signInUser, loginWithGoogle, loginWithGithub } = useAuth();
 
   const handleLogin = async (e) => {
@@ -25,7 +26,6 @@ const Login = () => {
       setError("Invalid email format");
       return;
     }
-
     try {
       const userCredential = await signInUser(email, password);
       const user = userCredential.user;
