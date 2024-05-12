@@ -27,7 +27,7 @@ const FoodDetails = () => {
   } = foods;
 
   return (
-    <div className="max-w-4xl mx-auto mt-8 px-4">
+    <div className="max-w-4xl mx-auto my-8 px-4">
       <div className="bg-white shadow-lg rounded-lg overflow-hidden">
         <img src={food_image} alt={food_name} className="w-full h-[400px] " />
         <div className="p-6">
@@ -79,14 +79,16 @@ const FoodDetails = () => {
           <p className="text-gray-700 mb-4" data-aos="fade-up">
             {description}
           </p>
-          <Link
-            to={`/foodPurchase/${_id}`}
-            state={food_name}
-            className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 focus:outline-none"
-          >
-            <AiOutlineShoppingCart className="inline-block mr-2" />
-            Purchase
-          </Link>
+          <div className="w-full">
+            <Link
+              to={`/foodPurchase/${_id}`}
+              state={food_name}
+              className="bg-blue-500 w-full text-xl text-white btn rounded-lg hover:bg-blue-600 focus:outline-none"
+            >
+              <AiOutlineShoppingCart className="inline-block mr-2" />
+              Purchase Now
+            </Link>
+          </div>
         </div>
       </div>
     </div>

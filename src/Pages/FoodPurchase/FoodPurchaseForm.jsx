@@ -9,36 +9,42 @@ const PurchaseForm = () => {
   const { user } = useAuth();
   const axiosSecure = useAxios();
   const foods = useLoaderData();
-  const { food_name, food_image, price, description } = foods;
+  const { _id, food_name, food_image, price, description } = foods;
   const [formData, setFormData] = useState({
+    foodId: _id,
     foodName: food_name,
     price: price,
     quantity: 1,
     buyerName: user?.displayName,
-    buyerEmail: user?.email || "Email Hidden Security",
+    buyerEmail: user?.email || "Email Hidden For Security",
     buyingDate: new Date().toDateString(),
+    address: "",
+    city: "",
+    totalPrice: price,
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+    let updatedFormData = { ...formData, [name]: value };
+
+    if (name === "quantity") {
+      const totalPrice = parseFloat(value) * formData.price;
+      updatedFormData = { ...updatedFormData, totalPrice: totalPrice };
+    }
+
+    setFormData(updatedFormData);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
-    // try {
-    //   await axiosSecure.post("/purchase", formData);
-    //   toast.success("Food item purchased successfully!");
-    // } catch (error) {
-    //   console.error("Error purchasing food item:", error);
-    //   toast.error("Failed to purchase food item. Please try again later.");
-    // }
+    try {
+      await axiosSecure.post("/purchase", formData);
+      toast.success("Food item purchased successfully!");
+    } catch (error) {
+      console.error("Error purchasing food item:", error);
+      toast.error("Failed to purchase food item. Please try again later.");
+    }
   };
-  const totalPrice = formData.price * formData.quantity;
   const Card = {
     img: `${food_image}`,
     title: `${food_name}`,
@@ -47,11 +53,11 @@ const PurchaseForm = () => {
   return (
     <div className="w-full mx-auto bg-white p-8 rounded-lg shadow-md">
       <BgCard Card={Card} />
-      <h2 className="text-2xl font-bold mb-4 text-center">
+      <h2 className="text-2xl font-bold my-4 text-center">
         Purchase: {food_name}
       </h2>
       <div
-        className={` w-full h-full flex justify-center bg-white drop-shadow-2xl rounded-lg `}
+        className={`w-full h-full flex justify-center bg-white drop-shadow-2xl rounded-lg `}
       >
         <div className="px-4 sm:px-6 lg:px-8 py-8">
           <div className="grid gap-8 lg:grid-cols-2">
@@ -83,7 +89,7 @@ const PurchaseForm = () => {
                       />
                     </div>
                     <div className="grid grid-cols-2 gap-4">
-                      <div>
+                      <div className="space-y-2">
                         <label
                           htmlFor="quantity"
                           className="block text-gray-700"
@@ -101,7 +107,7 @@ const PurchaseForm = () => {
                           className="mt-1 p-2 w-full border rounded-md focus:ring-blue-500 focus:border-blue-500"
                         />
                       </div>
-                      <div>
+                      <div className="space-y-2">
                         <label htmlFor="price" className="block text-gray-700">
                           Price
                         </label>
@@ -112,13 +118,34 @@ const PurchaseForm = () => {
                           value={formData.price}
                           onChange={handleChange}
                           required
-                          readOnly
+                          disabled
                           min={0}
-                          className="mt-1 p-2 w-full border rounded-md focus:ring-blue-500 focus:border-blue-500"
+                          className=" p-2 w-full border rounded-md focus:ring-blue-500 focus:border-blue-500"
                         />
                       </div>
                     </div>
-
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <label className="text-sm font-medium">Address</label>
+                        <input
+                          value={formData.address}
+                          onChange={handleChange}
+                          name="address"
+                          className="bg-transparent flex h-10 w-full rounded-md border px-3"
+                          placeholder="Enter your address"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <label className="text-sm font-medium">City</label>
+                        <input
+                          value={formData.city}
+                          onChange={handleChange}
+                          name="city"
+                          className="bg-transparent flex h-10 w-full rounded-md border px-3"
+                          placeholder="Enter your city"
+                        />
+                      </div>
+                    </div>
                     <div className="grid grid-cols-2 gap-4">
                       <div className="space-y-2">
                         <label className="text-sm font-medium">Name</label>
@@ -128,7 +155,7 @@ const PurchaseForm = () => {
                           disabled
                         />
                       </div>
-                      <div>
+                      <div className="space-y-2">
                         <label
                           htmlFor="buyingDate"
                           className="block text-gray-700"
@@ -141,12 +168,12 @@ const PurchaseForm = () => {
                           name="buyingDate"
                           value={formData.buyingDate}
                           disabled
-                          className="mt-1 p-2 w-full border-gray-300 rounded-md bg-gray-100"
+                          className="p-2 w-full border-gray-300 rounded-md bg-gray-100"
                         />
                       </div>
                     </div>
 
-                    <div className="mb-4">
+                    <div className="mb-4 space-y-2">
                       <label
                         htmlFor="buyerEmail"
                         className="block text-gray-700"
@@ -159,24 +186,8 @@ const PurchaseForm = () => {
                         name="buyerEmail"
                         value={formData.buyerEmail}
                         disabled
-                        className="mt-1 p-2 w-full border-gray-300 rounded-md bg-gray-100"
+                        className=" p-2 w-full border-gray-300 rounded-md bg-gray-100"
                       />
-                    </div>
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="space-y-2">
-                        <label className="text-sm font-medium">Address</label>
-                        <input
-                          className="bg-transparent flex h-10 w-full rounded-md border px-3"
-                          placeholder="Enter your address"
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <label className="text-sm font-medium">City</label>
-                        <input
-                          className="bg-transparent flex h-10 w-full rounded-md border px-3"
-                          placeholder="Enter your city"
-                        />
-                      </div>
                     </div>
                   </form>
                 </div>
@@ -261,7 +272,7 @@ const PurchaseForm = () => {
                     </div>
                     <div className="border-t border-gray-200 mt-4 pt-4 flex justify-between font-semibold">
                       <span>Total</span>
-                      <span>${totalPrice}</span>
+                      <span>${formData.totalPrice}</span>
                     </div>
                   </div>
                 </div>

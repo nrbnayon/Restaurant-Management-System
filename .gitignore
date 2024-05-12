@@ -13,6 +13,7 @@ dist
 dist-ssr
 *.local
 .gitignore
+Buy.jsx
 
 # Editor directories and files
 .vscode/*

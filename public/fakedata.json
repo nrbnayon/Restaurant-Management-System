@@ -7,6 +7,7 @@
     "quantity": 15,
     "made_by": "Chef Hiroshi Yamamoto",
     "food_origin": "Japan",
+    "purchaseCount": 0,
     "description": "A delightful assortment of fresh nigiri and maki sushi, including tuna, salmon, shrimp, and avocado rolls. Served with pickled ginger, wasabi, and soy sauce."
   },
   {
@@ -17,6 +18,7 @@
     "quantity": 20,
     "made_by": "Chef Rajesh Patel",
     "food_origin": "India",
+    "purchaseCount": 0,
     "description": "Tender pieces of marinated chicken cooked in a rich tomato-based sauce with a blend of aromatic Indian spices. Served with fragrant basmati rice and warm naan bread."
   },
   {
@@ -27,6 +29,7 @@
     "quantity": 25,
     "made_by": "Chef Maria Hernandez",
     "food_origin": "United States",
+    "purchaseCount": 0,
     "description": "Crisp romaine lettuce lightly grilled and tossed in creamy Caesar dressing, topped with garlic croutons, shaved Parmesan cheese, and grilled chicken breast."
   },
   {
@@ -47,6 +50,7 @@
     "quantity": 30,
     "made_by": "Chef Giovanni Russo",
     "food_origin": "Italy",
+    "purchaseCount": 0,
     "description": "Fresh ripe tomatoes, creamy mozzarella cheese, and fragrant basil leaves drizzled with extra virgin olive oil and balsamic glaze. A simple yet delicious Italian classic."
   },
   {
@@ -57,6 +61,7 @@
     "quantity": 22,
     "made_by": "Chef Nguyen Minh",
     "food_origin": "Vietnam",
+    "purchaseCount": 0,
     "description": "A fragrant beef broth simmered with spices, rice noodles, and tender slices of beef, garnished with fresh herbs, bean sprouts, lime wedges, and chili peppers."
   },
   {
@@ -67,6 +72,7 @@
     "quantity": 28,
     "made_by": "Chef Antonio Bianchi",
     "food_origin": "Italy",
+    "purchaseCount": 0,
     "description": "Thin-crust pizza topped with fresh tomatoes, mozzarella cheese, basil leaves, and a drizzle of olive oil. A classic Neapolitan pizza that's simple yet bursting with flavor."
   },
   {
@@ -77,6 +83,7 @@
     "quantity": 35,
     "made_by": "Pastry Chef Sophie Leclair",
     "food_origin": "France",
+    "purchaseCount": 0,
     "description": "A decadent chocolate cake with a molten chocolate center, served warm with a scoop of vanilla ice cream. A heavenly dessert that melts in your mouth."
   }
 ]
