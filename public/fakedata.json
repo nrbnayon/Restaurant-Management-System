@@ -87,3 +87,19 @@
     "description": "A decadent chocolate cake with a molten chocolate center, served warm with a scoop of vanilla ice cream. A heavenly dessert that melts in your mouth."
   }
 ]
+[
+
+  {"food_name":"New Seal with email other users ",
+  "food_image":"https://marketplace.canva.com/EAFu3pqFr-k/1/0/1600w/canva-pink-and-blue-neon-facebook-profile-picture-dKTM-ks2g_c.jpg",
+  "food_category":"Dessert","price":{"$numberDouble":"10.99"},
+  "quantity":35,
+  "totalSeals": 0,
+  "made_by":"Pastry Chef Sophie Leclair",
+  "food_origin":"France",
+  "purchaseCount":{"$numberInt":"1"},
+  "description":"A decadent chocolate cake with a molten chocolate center, served warm with a scoop of vanilla ice cream. A heavenly dessert that melts in your mouth.",
+  "userName":"tata",
+  "photoUrl":"https://marketplce.canva.com/EAFu3pqFr-k/1/0/1600w/canva-pink-and-blue-neon-facebook-profile-picture-dKTM-ks2g_c.jpg",
+  "userEmail": "user2@gmail.com"
+}
+]

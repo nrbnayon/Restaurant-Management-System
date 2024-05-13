@@ -9,6 +9,7 @@ import PrivateRouter from "./PrivateRouter";
 import PurchaseForm from "../Pages/FoodPurchase/FoodPurchaseForm";
 import Gallery from "../Pages/MyGallery/Gallery";
 import MyAddedFood from "../Pages/MyProfile/MyAddedFood";
+import MyPurchase from "../Pages/MyProfile/MyPurchase";
 
 const router = createBrowserRouter([
   {
@@ -42,6 +43,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRouter>
             <MyAddedFood />
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "/myOrderFood",
+        element: (
+          <PrivateRouter>
+            <MyPurchase />
           </PrivateRouter>
         ),
       },
