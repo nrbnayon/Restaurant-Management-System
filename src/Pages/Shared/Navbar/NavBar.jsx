@@ -8,6 +8,7 @@ import useAuth from "../../../hooks/useAuth";
 const NavBar = () => {
   const [theme, setTheme] = useState("light");
   const { user, logOut } = useAuth();
+
   const handleLogout = () => {
     logOut()
       .then(() => {})
@@ -66,24 +67,33 @@ const NavBar = () => {
           GALLERY
         </NavLink>
       </li>
-      <li>
-        <NavLink
-          to="/myProfile"
-          className={({ isActive }) =>
-            isActive
-              ? "text-primary border border-primary uppercase"
-              : "font-bold bg-sky-500 transition-all duration-300 group-hover:w-full uppercase"
-          }
-        >
-          My Profile
-        </NavLink>
-      </li>
+      {user && (
+        <li>
+          <details className="font-bold uppercase dropdown">
+            <summary tabIndex={0}>My Profile</summary>
+            <ul
+              tabIndex={0}
+              className="p-2 shadow space-y-2 menu dropdown-content z-[1] bg-base-100 rounded-box w-60 uppercase"
+            >
+              <li className="btn btn-primary">
+                <Link to="myAddedFoods">My added food </Link>
+              </li>
+              <li className="btn btn-primary">
+                <Link to="addedFood">Add a food </Link>
+              </li>
+              <li className="btn btn-primary">
+                <Link to="myOrderFood">My ordered food </Link>
+              </li>
+            </ul>
+          </details>
+        </li>
+      )}
     </>
   );
   return (
     <div className="navbar bg-base-100 h-20 border-b-2 drop-shadow fixed z-50 bg-opacity-90">
       <div className="navbar-start mr-20 md:mr-0 ">
-        <div className="drawer drawer-end lg:hidden">
+        <div className="drawer drawer-end lg:hidden ">
           <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
           <div className="drawer-content">
             {/* Page content here */}
@@ -104,7 +114,7 @@ const NavBar = () => {
               </svg>
             </label>
           </div>
-          <div className="drawer-side z-20 ">
+          <div className="drawer-side z-[200] ">
             <ul className="menu p-4 w-52 min-h-full bg-base-200 text-base-content">
               <label
                 htmlFor="my-drawer-4"
