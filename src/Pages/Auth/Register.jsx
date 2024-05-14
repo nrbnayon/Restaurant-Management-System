@@ -57,7 +57,6 @@ const Register = () => {
   return (
     <div className="flex h-screen items-center justify-center bg-[#8EA7E9]/20 p-6 md:p-0">
       <div className="flex h-full w-full overflow-hidden rounded-xl shadow-md  md:h-[90%] md:w-[80%] lg:h-[80%]">
-        {/* register design side  */}
         <div className="relative hidden h-full items-center justify-center bg-[#8EA7E9] md:flex md:w-[60%] lg:w-[40%]">
           <div className="absolute -top-2 left-[20%] h-16 w-16 rounded-full bg-gradient-to-br  from-white via-[#9eb6f8] to-[#6585dd]"></div>
           <div className="absolute bottom-[18%] left-[20%] h-20 w-20 rounded-full bg-gradient-to-br  from-white via-[#9eb6f8] to-[#6585dd]"></div>
@@ -103,7 +102,7 @@ const Register = () => {
               <input
                 type={showPassword ? "text" : "password"}
                 name="password"
-                placeholder="Create a password"
+                placeholder="Enter password"
                 className="w-full rounded-lg border border-[#8EA7E9] px-6 py-2 focus:outline-none focus:ring-2 focus:ring-[#8EA7E9]/50"
                 required
               />

@@ -5,7 +5,7 @@ import "leaflet/dist/leaflet.css";
 
 const customIcon = L.icon({
   iconUrl: "https://i.ibb.co/41CDQmy/3448653-removebg-preview.png",
-  iconSize: [38, 95],
+  iconSize: [30, 40],
   iconAnchor: [22, 94],
   popupAnchor: [-3, -76],
 });

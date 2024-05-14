@@ -16,7 +16,6 @@ const MyPurchase = () => {
     buyerProfileUrl: user?.photoURL,
     buyerEmail: user?.email || "Email Hidden For Security",
   };
-  console.log(findPurchaseFood);
 
   useEffect(() => {
     let queryParams = "";
@@ -66,53 +65,64 @@ const MyPurchase = () => {
 
   return (
     <div className="overflow-x-auto">
-      <table className="table">
-        {/* head */}
-        <thead>
-          <tr>
-            <th>Food Details</th>
-            <th>Purchase Date</th>
-            <th>Food Owner</th>
-            <th>My Address</th>
-            <th>Delete</th>
-          </tr>
-        </thead>
-        <tbody>
-          {myPurchaseFood.map((food) => (
-            <tr key={food._id}>
-              <td>
-                <div className="flex flex-col md:flex-row  items-center gap-3">
-                  <div className="avatar">
-                    <div className="mask mask-squircle w-12 h-12 md:w-16 md:h-16">
-                      <img src={food?.foodImage} alt={food?.foodName} />
+      {myPurchaseFood.length === 0 ? (
+        <div className="text-center text-gray-500 py-8">
+          <p className="text-lg font-semibold mb-2">Zero Purchases Yet</p>
+          <p>Start purchasing now!</p>
+        </div>
+      ) : (
+        <table className="table">
+          {/* head */}
+          <thead>
+            <tr>
+              <th>Food Information</th>
+              <th>Purchase Date & Cost</th>
+              <th>Food Owner</th>
+              <th>My Address</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            {myPurchaseFood.map((food) => (
+              <tr key={food._id}>
+                <td>
+                  <div className="flex flex-col md:flex-row  items-center gap-3">
+                    <div className="avatar">
+                      <div className="mask mask-squircle w-12 h-12 md:w-16 md:h-16">
+                        <img src={food?.foodImage} alt={food?.foodName} />
+                      </div>
+                    </div>
+                    <div className="w-full">
+                      <div className="font-bold">{food?.foodName}</div>
+                      <div className="text-sm opacity-50">
+                        Buy Quantity: {food?.quantity}
+                      </div>
                     </div>
                   </div>
-                  <div className="w-full">
-                    <div className="font-bold">{food?.foodName}</div>
-                    <div className="text-sm opacity-50">
-                      Buy Quantity: {food?.quantity}
-                    </div>
+                </td>
+                <td>
+                  <div>
+                    <p>{food?.buyingDate}</p>
                     <div className="text-sm opacity-50">
                       Total Cost: ${food?.totalPrice}
                     </div>
                   </div>
-                </div>
-              </td>
-              <td>{food?.buyingDate}</td>
-              <td className="uppercase">{food?.foodOwner}</td>
-              <td>{food?.address}</td>
-              <th>
-                <button
-                  onClick={() => handleDelete(food._id)}
-                  className="btn btn-circle btn-sm md:btn-md"
-                >
-                  <MdDeleteSweep className="w-4 h-4 md:w-6 md:h-6" />
-                </button>
-              </th>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+                </td>
+                <td className="uppercase">{food?.foodOwner}</td>
+                <td>{food?.address}</td>
+                <th>
+                  <button
+                    onClick={() => handleDelete(food._id)}
+                    className="btn btn-circle btn-sm md:btn-md"
+                  >
+                    <MdDeleteSweep className="w-4 h-4 md:w-6 md:h-6" />
+                  </button>
+                </th>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
     </div>
   );
 };

@@ -11,6 +11,7 @@ import {
   signOut,
   updateProfile as updateUserProfile,
 } from "firebase/auth";
+import useAxios from "./../hooks/useAxios";
 
 export const AuthContext = createContext(null);
 
@@ -20,6 +21,7 @@ const AuthProvider = ({ children }) => {
   const googleProvider = new GoogleAuthProvider();
   const [profileUpdating, setProfileUpdating] = useState(false);
   const githubProvider = new GithubAuthProvider();
+  const axiosSecure = useAxios();
 
   const createUser = (email, password) => {
     setLoading(true);
@@ -44,11 +46,29 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
-
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
+      const loggedUser = {
+        email: currentUser?.email,
+        username: currentUser?.displayName,
+        photoURL: currentUser?.photoURL,
+      };
       setUser(currentUser);
       setLoading(false);
+
+      if (currentUser) {
+        axiosSecure
+          .post("/jwt", loggedUser, { withCredentials: true })
+          .then((res) => {
+            console.log("Token:", res.data);
+          });
+      } else {
+        axiosSecure
+          .post("/logout", loggedUser, { withCredentials: true })
+          .then((res) => {
+            console.log("Token:", res.data);
+          });
+      }
     });
     return () => {
       unSubscribe();

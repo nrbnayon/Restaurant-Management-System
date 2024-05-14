@@ -15,9 +15,9 @@ const Plan = () => {
             A small business is only as good as its tools.
           </h2>
           <p className="lg:text-xl md:text-lg text-[#8896AB] mt-5 max-w-[600px] text-center mx-auto text-sm">
-            We’re different. Flex is the only saas business platform that lets
-            you run your business on one platform, seamlessly across all digital
-            channels.
+            We’re different. Flex is the only food business platform that lets
+            you run your restaurant business on one platform, seamlessly across
+            all digital channels.
           </p>
           {/* Banner action  */}
           <div className="mt-5 flex md:flex-row max-w-[450px] mx-auto justify-center gap-2 flex-col">

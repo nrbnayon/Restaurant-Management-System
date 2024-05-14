@@ -82,72 +82,80 @@ const MyAddedFood = () => {
 
   return (
     <div className="overflow-x-auto">
-      <table className="table">
-        {/* head */}
-        <thead className="w-full">
-          <tr>
-            <th>Delete</th>
-            <th>Images & Name</th>
-            <th>Available Quantity</th>
-            <th>Per Quantity</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {myAddedFood.map((food) => (
-            <tr key={food._id}>
-              <th>
-                <button
-                  onClick={() => handleDelete(food._id)}
-                  className="btn btn-circle btn-sm md:btn-md"
-                >
-                  <MdDeleteSweep className="w-4 h-4 md:w-6 md:h-6" />
-                </button>
-              </th>
-              <td>
-                <div className="flex flex-col md:flex-row items-center gap-3">
-                  <div className="avatar">
-                    <div className="mask mask-squircle w-12 h-12 md:w-16 md:h-16">
-                      <img src={food?.food_image} alt={food?.food_name} />
-                    </div>
-                  </div>
-                  <div>
-                    <div className="font-bold">{food?.food_name}</div>
-                    <div className="text-sm opacity-50">
-                      Total Quantity Seals: {food?.totalSeals}
-                    </div>
-                  </div>
-                </div>
-              </td>
-              <td>
-                {" "}
-                <p className="md:ml-8">{food?.quantity}</p>
-              </td>
-              <td>
-                {" "}
-                <p className="md:ml-5">${food?.price}</p>
-              </td>
-              <th>
-                <div className="flex flex-col space-y-1">
-                  <Link
-                    to={`/FoodDetails/${food._id}`}
-                    className="btn btn-ghost btn-xs btn-outline"
-                  >
-                    <FaEye />
-                    <span className="hidden md:flex">DETAILS</span>
-                  </Link>
-                  <Link
-                    onClick={() => handleUpdate(food._id)}
-                    className="btn btn-ghost btn-xs border border-secondary"
-                  >
-                    <FaRegEdit /> <span className="hidden md:flex">UPDATE</span>
-                  </Link>
-                </div>
-              </th>
+      {myAddedFood.length === 0 ? (
+        <div className="text-center text-gray-500 py-8">
+          <p className="text-lg font-semibold mb-2">Zero Foods Added Yet</p>
+          <p>Add some foods to see them here!</p>
+        </div>
+      ) : (
+        <table className="table">
+          {/* head */}
+          <thead className="w-full">
+            <tr>
+              <th>Delete</th>
+              <th>Added Information</th>
+              <th>Available Quantity</th>
+              <th>Per Quantity</th>
+              <th>Action</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {myAddedFood.map((food) => (
+              <tr key={food._id}>
+                <th>
+                  <button
+                    onClick={() => handleDelete(food._id)}
+                    className="btn btn-circle btn-sm md:btn-md"
+                  >
+                    <MdDeleteSweep className="w-4 h-4 md:w-6 md:h-6" />
+                  </button>
+                </th>
+                <td>
+                  <div className="flex flex-col md:flex-row items-center gap-3">
+                    <div className="avatar">
+                      <div className="mask mask-squircle w-12 h-12 md:w-16 md:h-16">
+                        <img src={food?.food_image} alt={food?.food_name} />
+                      </div>
+                    </div>
+                    <div>
+                      <div className="font-bold">{food?.food_name}</div>
+                      <div className="text-sm opacity-50">
+                        Total Quantity Seals: {food?.totalSeals}
+                      </div>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  {" "}
+                  <p className="ml-4 md:ml-8">{food?.quantity}</p>
+                </td>
+                <td>
+                  {" "}
+                  <p className="ml-4 md:ml-5">${food?.price}</p>
+                </td>
+                <th>
+                  <div className="flex flex-col space-y-1">
+                    <Link
+                      to={`/FoodDetails/${food._id}`}
+                      className="btn btn-ghost btn-xs btn-outline"
+                    >
+                      <FaEye />
+                      <span className="hidden md:flex">DETAILS</span>
+                    </Link>
+                    <Link
+                      onClick={() => handleUpdate(food._id)}
+                      className="btn btn-ghost btn-xs border border-secondary"
+                    >
+                      <FaRegEdit />{" "}
+                      <span className="hidden md:flex">UPDATE</span>
+                    </Link>
+                  </div>
+                </th>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
       {modalOpen && (
         <UpdateFood
           foodId={updateFoodInfo}
