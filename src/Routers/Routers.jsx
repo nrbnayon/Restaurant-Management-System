@@ -11,12 +11,13 @@ import Gallery from "../Pages/MyGallery/Gallery";
 import MyAddedFood from "../Pages/MyProfile/MyAddedFood";
 import MyPurchase from "../Pages/MyProfile/MyPurchase";
 import AddNewFood from "../Pages/MyProfile/AddNewFood";
+import NotFound from "./../Pages/NotFound/NotFound";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
-    errorElement: <p>Not Found</p>,
+    errorElement: <NotFound />,
     children: [
       {
         path: "/",

@@ -6,6 +6,9 @@ import { FaRegUser } from "react-icons/fa";
 import { AiOutlinePlus } from "react-icons/ai";
 import Modal from "./Modal";
 import { useLocation, useNavigate } from "react-router-dom";
+import BgCard from "../Shared/BgCard/BgCard";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Gallery = () => {
   const axiosSecure = useAxios();
@@ -41,6 +44,10 @@ const Gallery = () => {
     });
   }, [axiosSecure]);
 
+  useEffect(() => {
+    AOS.init();
+  }, []);
+
   const handleAddButtonClick = (foodImage) => {
     if (user) {
       setModalOpen(true);
@@ -54,8 +61,16 @@ const Gallery = () => {
     return <SkeletonLoader />;
   }
 
+  const Card = {
+    img: "https://img.freepik.com/free-psd/food-menu-restaurant-facebook-cover-template_106176-735.jpg?size=626&ext=jpg&ga=GA1.1.2082370165.1715644800&semt=ais_user",
+    title: "Watch Our Delicious Food Gallery",
+    desc: "Explore a tantalizing journey through our culinary delights. Indulge your senses with a feast for the eyes, showcasing our mouthwatering dishes that promise to delight every palate.",
+  };
+
   return (
     <section className="py-6 dark:bg-gray-100 dark:text-gray-900">
+      <BgCard Card={Card} />
+      <h3 className="text-3xl text-center my-4 font-bold">Food Gallery</h3>
       <div className="container grid grid-cols-2 gap-4 p-4 mx-auto md:grid-cols-4">
         {allFoodsImg.map((food, index) => (
           <div
@@ -64,6 +79,8 @@ const Gallery = () => {
               index === 0 &&
               "col-span-2 row-span-2 md:col-start-3 md:row-start-1"
             }`}
+            data-aos="fade-up"
+            data-aos-duration="1000"
           >
             <img
               src={food.food_image}

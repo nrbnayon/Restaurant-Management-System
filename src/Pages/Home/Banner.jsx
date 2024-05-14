@@ -6,28 +6,28 @@ const Banner = () => {
   const sliders = [
     {
       img: "https://i.ibb.co/3Sjv5FM/f1.png",
-      title: "Enjoy Healthy Life",
-      des: "There Are People Who Can't Start Their Day Without Restaurant.",
+      title: "Discover Our Menu",
+      des: "Explore a symphony of flavors. Indulge in our delectable dishes crafted with passion and expertise.",
     },
     {
       img: "https://i.ibb.co/cLWyN0R/f2.png",
-      title: "Escape 2",
-      des: "A Symphony of Tranquility. Experience the perfect blend of relaxation and excitement.",
+      title: "Savor Every Bite",
+      des: "Experience the perfect blend of taste and ambiance. Unwind and delight in culinary excellence at our restaurant.",
     },
     {
       img: "https://i.ibb.co/FJbtLx1/f3.png",
-      title: "Escape 3",
-      des: "A Symphony of Tranquility. Experience the perfect blend of relaxation and excitement.",
+      title: "Unforgettable Dining Experience",
+      des: "Create lasting memories with every dish. Elevate your dining experience with our exquisite menu and impeccable service.",
     },
     {
       img: "https://i.ibb.co/qdfqzfZ/f4.png",
-      title: "Escape 4",
-      des: "A Symphony of Tranquility. Experience the perfect blend of relaxation and excitement.",
+      title: "Taste the Difference",
+      des: "Dive into a world of culinary delight. Discover the essence of fine dining at our restaurant.",
     },
     {
       img: "https://i.ibb.co/4tSkGQy/f5.png",
-      title: "Escape 5",
-      des: "A Symphony of Tranquility. Experience the perfect blend of relaxation and excitement.",
+      title: "Elevate Your Palate",
+      des: "Embark on a culinary journey like no other. Let our menu tantalize your taste buds and leave you craving for more.",
     },
   ];
   const prevSlider = () =>

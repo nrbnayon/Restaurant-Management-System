@@ -2,15 +2,25 @@ import { useState } from "react";
 import useAxios from "../../hooks/useAxios";
 import { toast } from "react-toastify";
 import useAuth from "../../hooks/useAuth";
-import { Link, useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import BgCard from "../Shared/BgCard/BgCard";
 
 const PurchaseForm = () => {
   const { user } = useAuth();
   const axiosSecure = useAxios();
   const foods = useLoaderData();
-  const { _id, food_name, food_image, price, description, userName, quantity } =
-    foods;
+  const navigate = useNavigate();
+
+  const {
+    _id,
+    food_name,
+    food_image,
+    price,
+    description,
+    userName,
+    quantity,
+    photoUrl,
+  } = foods;
   const [formData, setFormData] = useState({
     foodId: _id,
     foodName: food_name,
@@ -42,8 +52,13 @@ const PurchaseForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axiosSecure.post("/purchase", formData);
-      toast.success("Food item purchased successfully!");
+      if (quantity === 0) {
+        toast.warn("OOPS! Item is not available");
+      } else {
+        await axiosSecure.post("/purchase", formData);
+        toast.success("Food item purchased successfully!");
+        navigate("/myOrderFood");
+      }
     } catch (error) {
       console.error("Error purchasing food item:", error);
       toast.error("Failed to purchase food item. Please try again later.");
@@ -263,16 +278,7 @@ const PurchaseForm = () => {
                     </div>
                     <div className="flex justify-between">
                       <span>Quantity:</span>
-                      <span>
-                        <input
-                          type="number"
-                          min="1"
-                          value={formData.quantity}
-                          onChange={handleChange}
-                          className="w-16 text-center"
-                          name="quantity"
-                        />
-                      </span>
+                      <span>{formData.quantity}</span>
                     </div>
                     <div className="border-t border-gray-200 mt-4 pt-4 flex justify-between font-semibold">
                       <span>Total</span>
@@ -281,14 +287,13 @@ const PurchaseForm = () => {
                   </div>
                 </div>
                 <div className="flex items-center lg:p-6 p-2">
-                  <Link
-                    to="/myOrderFood"
+                  <button
                     onClick={handleSubmit}
-                    disabled={quantity === 0}
+                    disabled={photoUrl === user?.photoURL}
                     className="inline-flex items-center btn hover:btn-secondary text-white justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full"
                   >
                     Complete Purchase
-                  </Link>
+                  </button>
                 </div>
               </div>
             </div>
