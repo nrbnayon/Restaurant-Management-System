@@ -2,7 +2,7 @@ import { useState } from "react";
 import useAxios from "../../hooks/useAxios";
 import { toast } from "react-toastify";
 import useAuth from "../../hooks/useAuth";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import BgCard from "../Shared/BgCard/BgCard";
 
 const PurchaseForm = () => {
@@ -281,13 +281,14 @@ const PurchaseForm = () => {
                   </div>
                 </div>
                 <div className="flex items-center lg:p-6 p-2">
-                  <button
+                  <Link
+                    to="/myOrderFood"
                     onClick={handleSubmit}
                     disabled={quantity === 0}
-                    className="inline-flex items-center bg-slate-950 text-white justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full"
+                    className="inline-flex items-center btn hover:btn-secondary text-white justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full"
                   >
                     Complete Purchase
-                  </button>
+                  </Link>
                 </div>
               </div>
             </div>

@@ -6,12 +6,15 @@ import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import { FaRegEdit, FaEye } from "react-icons/fa";
+import UpdateFood from "./UpdateFood";
 
 const MyAddedFood = () => {
   const { user } = useAuth();
   const axiosSecure = useAxios();
 
   const [myAddedFood, setMyAddedFood] = useState([]);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [updateFoodInfo, setUpdateFoodInfo] = useState(null);
 
   const findBy = {
     userName: user?.displayName,
@@ -19,7 +22,7 @@ const MyAddedFood = () => {
     userEmail: user?.email || "Email Hidden For Security",
   };
 
-  useEffect(() => {
+  const fetchMyAddedFood = () => {
     let queryParams = "";
     if (findBy.userName && findBy.photoUrl) {
       queryParams = `userName=${findBy.userName}&photoUrl=${findBy.photoUrl}`;
@@ -33,6 +36,10 @@ const MyAddedFood = () => {
         console.error("Error fetching user's added foods:", error);
         toast.error("Failed to fetch user's added foods.");
       });
+  };
+
+  useEffect(() => {
+    fetchMyAddedFood();
   }, []);
 
   const handleDelete = async (id) => {
@@ -47,9 +54,7 @@ const MyAddedFood = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          console.log("delete id", id);
           await axiosSecure.post(`/myAddedFoods/${id}`);
-          // Remove the deleted item from the state
           setMyAddedFood(myAddedFood.filter((food) => food._id !== id));
           Swal.fire({
             title: "Deleted!",
@@ -66,17 +71,26 @@ const MyAddedFood = () => {
     });
   };
 
+  const handleUpdate = (foodId) => {
+    setUpdateFoodInfo(foodId);
+    setModalOpen(true);
+  };
+
+  const handleFoodUpdate = () => {
+    fetchMyAddedFood();
+  };
+
   return (
     <div className="overflow-x-auto">
       <table className="table">
         {/* head */}
-        <thead>
+        <thead className="w-full">
           <tr>
             <th>Delete</th>
             <th>Images & Name</th>
             <th>Available Quantity</th>
-            <th>Price</th>
-            <th>Status</th>
+            <th>Per Quantity</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -85,15 +99,15 @@ const MyAddedFood = () => {
               <th>
                 <button
                   onClick={() => handleDelete(food._id)}
-                  className="btn btn-circle btn-md"
+                  className="btn btn-circle btn-sm md:btn-md"
                 >
-                  <MdDeleteSweep className="w-6 h-6" />
+                  <MdDeleteSweep className="w-4 h-4 md:w-6 md:h-6" />
                 </button>
               </th>
               <td>
-                <div className="flex items-center gap-3">
+                <div className="flex flex-col md:flex-row items-center gap-3">
                   <div className="avatar">
-                    <div className="mask mask-squircle w-16 h-16">
+                    <div className="mask mask-squircle w-12 h-12 md:w-16 md:h-16">
                       <img src={food?.food_image} alt={food?.food_name} />
                     </div>
                   </div>
@@ -105,21 +119,28 @@ const MyAddedFood = () => {
                   </div>
                 </div>
               </td>
-              <td>Available Quantity: {food?.quantity}</td>
-              <td>Per Quantity: ${food?.price}</td>
+              <td>
+                {" "}
+                <p className="md:ml-8">{food?.quantity}</p>
+              </td>
+              <td>
+                {" "}
+                <p className="md:ml-5">${food?.price}</p>
+              </td>
               <th>
                 <div className="flex flex-col space-y-1">
                   <Link
                     to={`/FoodDetails/${food._id}`}
                     className="btn btn-ghost btn-xs btn-outline"
                   >
-                    <FaEye /> Details
+                    <FaEye />
+                    <span className="hidden md:flex">DETAILS</span>
                   </Link>
                   <Link
-                    to={`/FoodDetails/${food._id}`}
+                    onClick={() => handleUpdate(food._id)}
                     className="btn btn-ghost btn-xs border border-secondary"
                   >
-                    <FaRegEdit /> UPDATE
+                    <FaRegEdit /> <span className="hidden md:flex">UPDATE</span>
                   </Link>
                 </div>
               </th>
@@ -127,6 +148,13 @@ const MyAddedFood = () => {
           ))}
         </tbody>
       </table>
+      {modalOpen && (
+        <UpdateFood
+          foodId={updateFoodInfo}
+          closeModal={() => setModalOpen(false)}
+          handleFoodUpdate={handleFoodUpdate}
+        />
+      )}
     </div>
   );
 };

@@ -45,7 +45,7 @@ const AllFoods = () => {
     <div className="my-6">
       <BgCard Card={Card} />
 
-      <p className="my-4">
+      <p className="my-4 text-center">
         Here&apos;s a sneak peek of our delicious offerings:
       </p>
       <div className="flex items-center md:w-1/2 mx-auto border border-gray-300 rounded-l-[30px] rounded-r-[30px] overflow-hidden">

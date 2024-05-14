@@ -81,13 +81,13 @@ const MyPurchase = () => {
           {myPurchaseFood.map((food) => (
             <tr key={food._id}>
               <td>
-                <div className="flex items-center gap-3">
+                <div className="flex flex-col md:flex-row  items-center gap-3">
                   <div className="avatar">
-                    <div className="mask mask-squircle w-16 h-16">
+                    <div className="mask mask-squircle w-12 h-12 md:w-16 md:h-16">
                       <img src={food?.foodImage} alt={food?.foodName} />
                     </div>
                   </div>
-                  <div>
+                  <div className="w-full">
                     <div className="font-bold">{food?.foodName}</div>
                     <div className="text-sm opacity-50">
                       Buy Quantity: {food?.quantity}
@@ -104,9 +104,9 @@ const MyPurchase = () => {
               <th>
                 <button
                   onClick={() => handleDelete(food._id)}
-                  className="btn btn-circle btn-md"
+                  className="btn btn-circle btn-sm md:btn-md"
                 >
-                  <MdDeleteSweep className="w-6 h-6" />
+                  <MdDeleteSweep className="w-4 h-4 md:w-6 md:h-6" />
                 </button>
               </th>
             </tr>
