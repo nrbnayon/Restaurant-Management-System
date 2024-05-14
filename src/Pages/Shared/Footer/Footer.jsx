@@ -134,7 +134,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="py-6 text-sm text-center dark:text-gray-600">
-        © 2024 e MENU Restaurant. All rights reserved.
+        © 2024 e-MENU Restaurant. All rights reserved.
       </div>
     </footer>
   );
