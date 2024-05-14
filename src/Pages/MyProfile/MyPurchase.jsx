@@ -29,7 +29,7 @@ const MyPurchase = () => {
       .then((res) => setMyPurchaseFood(res.data))
       .catch((error) => {
         console.error("Error fetching user's purchase foods:", error);
-        toast.error("Failed to fetch user's purchase foods.");
+        toast.error("Failed to fetch your purchase foods.");
       });
   }, []);
 

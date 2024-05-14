@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect } from "react";
+import { toast } from "react-toastify";
 const axiosSecure = axios.create({
   baseURL: "http://localhost:8080",
   withCredentials: true,
@@ -13,9 +14,8 @@ const useAxios = () => {
       },
       (error) => {
         if (error.response.status === 401 || error.response.status === 403) {
-          console.log("Logout user");
+          toast.warn("Unauthorized Action");
         }
-        // console.log("Track error interceptor: ", error.response);
       }
     );
   }, []);

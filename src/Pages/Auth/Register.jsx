@@ -127,7 +127,7 @@ const Register = () => {
               </div>
             )}
             <input
-              className="w-[80%] rounded-lg bg-[#8EA7E9] px-6 py-2 font-medium text-white md:w-[60%]"
+              className="w-[80%] btn hover:btn-primary rounded-lg bg-[#8EA7E9] px-6 py-2 font-medium text-white md:w-[60%]"
               type="submit"
             />
           </form>

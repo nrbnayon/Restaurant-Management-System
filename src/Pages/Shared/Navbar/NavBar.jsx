@@ -218,7 +218,7 @@ const NavBar = () => {
         </div>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">{navLinks}</ul>
+        <ul className="menu menu-horizontal space-x-2 px-1">{navLinks}</ul>
       </div>
       <div className="navbar-end space-x-2">
         <div className="dropdown dropdown-end">
@@ -236,7 +236,7 @@ const NavBar = () => {
           >
             <div className="card-body">
               <span className="font-bold text-lg"> Items</span>
-              <span className="text-info">Subtotal: $</span>
+              <span className="text-info">Subtotal: $0</span>
               <div className="card-actions">
                 <button className="btn btn-primary btn-block">View cart</button>
               </div>
@@ -275,7 +275,7 @@ const NavBar = () => {
                     <img
                       tabIndex={0}
                       className="rounded-full"
-                      src={user.photoURL}
+                      src={user?.photoURL}
                     />
                   </div>
                 </Tooltip>
