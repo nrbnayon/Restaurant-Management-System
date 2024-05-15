@@ -4,6 +4,7 @@ import BgCard from "../Shared/BgCard/BgCard";
 import { FaSearch } from "react-icons/fa";
 import FoodCard from "./FoodCard";
 import SkeletonLoader from "../LoaderSpiner/SkeletonLoader";
+import { Pagination, Stack } from "@mui/material";
 
 const Card = {
   img: "https://i.ibb.co/qdfqzfZ/f4.png",
@@ -13,12 +14,15 @@ const Card = {
 
 const AllFoods = () => {
   const axiosSecure = useAxios();
-
   const [allFoods, setAllFoods] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [loadingNextPage, setLoadingNextPage] = useState(false);
+  const [loadingPreviousPage, setLoadingPreviousPage] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
     axiosSecure
       .get(`/foods?name=${searchQuery}`)
       .then((res) => {
@@ -36,15 +40,30 @@ const AllFoods = () => {
     setSearchQuery(event.target.value);
   };
 
-  if (loading || !allFoods) {
+  const itemsPerPage = 9;
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = allFoods.slice(indexOfFirstItem, indexOfLastItem);
+
+  const paginate = (pageNumber) => {
+    setLoadingNextPage(true);
+    setCurrentPage(pageNumber);
+    setLoadingPreviousPage(false);
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      setLoadingNextPage(false);
+    }, 1000);
+  };
+
+  if (loading || loadingNextPage || loadingPreviousPage) {
     return <SkeletonLoader />;
   }
 
   return (
     <div className="my-6">
       <BgCard Card={Card} />
-
-      <p className="my-4 text-center">
+      <p className="my-4 text-xl font-bold text-center">
         Here&apos;s a sneak peek of our delicious offerings:
       </p>
       <div className="flex items-center md:w-1/2 mx-auto border border-gray-300 rounded-l-[30px] rounded-r-[30px] overflow-hidden">
@@ -60,9 +79,20 @@ const AllFoods = () => {
         </button>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
-        {allFoods.map((food) => (
+        {currentItems.map((food) => (
           <FoodCard key={food._id} food={food} />
         ))}
+      </div>
+      <div className="flex justify-center items-center text-center">
+        <Stack spacing={2}>
+          <Pagination
+            count={Math.ceil(allFoods.length / itemsPerPage)}
+            variant="outlined"
+            shape="rounded"
+            page={currentPage}
+            onChange={(event, page) => paginate(page)}
+          />
+        </Stack>
       </div>
     </div>
   );

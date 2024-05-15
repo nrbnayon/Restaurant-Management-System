@@ -22,6 +22,8 @@
     "dayjs": "^1.11.10",
     "firebase": "^10.6.0",
     "localforage": "^1.10.0",
+    "lodash": "^4.17.21",
+    "lodash.debounce": "^4.0.8",
     "lottie-react": "^2.4.0",
     "match-sorter": "^6.3.4",
     "prop-types": "^15.8.1",
