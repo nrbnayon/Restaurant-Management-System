@@ -118,7 +118,7 @@ npm start
 
 Here are some screenshots showcasing the features of eMenu Restaurant:
 
-![Homepage](/homepage.png)
+![Homepage](/public/homepage.png)
 
 
 ## Contributing
