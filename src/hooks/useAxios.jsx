@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
 const axiosSecure = axios.create({
-  baseURL: "http://localhost:8080",
+  baseURL: "https://restaurant-management-server-three-gules.vercel.app",
   withCredentials: true,
 });
 

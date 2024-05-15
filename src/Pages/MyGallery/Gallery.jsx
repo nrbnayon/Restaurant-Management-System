@@ -116,7 +116,7 @@ const Gallery = () => {
             <div className="absolute w-full inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition duration-300 bg-black bg-opacity-50 rounded">
               <div className="text-white text-center">
                 <FaRegUser className="inline-block mb-2 mr-1" />
-                {food?.food_name}
+                {food?.userName}
                 <br />
                 {food?.description.slice(0, 30)}...
               </div>

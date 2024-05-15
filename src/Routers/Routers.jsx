@@ -67,13 +67,17 @@ const router = createBrowserRouter([
       {
         path: "/foodDetails/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:8080/foods/${params.id}`),
+          fetch(
+            `https://restaurant-management-server-three-gules.vercel.app/foods/${params.id}`
+          ),
         element: <FoodDetails />,
       },
       {
         path: "/foodPurchase/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:8080/foods/${params.id}`),
+          fetch(
+            `https://restaurant-management-server-three-gules.vercel.app/foods/${params.id}`
+          ),
         element: (
           <PrivateRouter>
             <PurchaseForm />
