@@ -43,9 +43,6 @@ const FoodCard = ({ food }) => {
               </g>
             </svg>
           </div>
-          <button className="rounded-xl bg-[#0095FF] px-3 py-1 font-medium text-white duration-200 hover:bg-[#0095FF]/90">
-            10% off
-          </button>
         </div>
         <img
           width={300}
@@ -138,12 +135,12 @@ const FoodCard = ({ food }) => {
         </Link>
 
         <button
-          className="flex items-center bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105"
+          className="flex items-center btn btn-sm duration-300 ease-in-out transform hover:scale-105"
           data-aos="fade-up"
           data-aos-delay="400"
         >
-          <FaCartArrowDown className="mr-2" />
-          <span className="text-[#c7c7c5]">Add to Cart</span>
+          <FaCartArrowDown className="w-4 h-4" />
+          {/* <span className="text-[#c7c7c5]">Add to Cart</span> */}
         </button>
       </div>
     </div>

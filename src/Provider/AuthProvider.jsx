@@ -59,14 +59,14 @@ const AuthProvider = ({ children }) => {
       if (currentUser) {
         axiosSecure
           .post("/jwt", loggedUser, { withCredentials: true })
-          .then((res) => {
-            console.log("Token:", res.data);
+          .then(() => {
+            // console.log("Token:", res.data);
           });
       } else {
         axiosSecure
           .post("/logout", loggedUser, { withCredentials: true })
-          .then((res) => {
-            console.log("Token:", res.data);
+          .then(() => {
+            // console.log("Token:", res.data);
           });
       }
     });

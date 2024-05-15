@@ -45,7 +45,6 @@ const MyPurchase = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          console.log("delete id", id);
           await axiosSecure.post(`/myPurchase/${id}`);
           setMyPurchaseFood(myPurchaseFood.filter((food) => food._id !== id));
           Swal.fire({

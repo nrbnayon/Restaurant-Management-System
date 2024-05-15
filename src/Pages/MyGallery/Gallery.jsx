@@ -41,7 +41,6 @@ const Gallery = () => {
       setGallery(res.data);
     });
   }, [axiosSecure]);
-  console.log("gallery", gallery);
   useEffect(() => {
     AOS.init();
   }, []);

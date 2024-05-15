@@ -55,7 +55,7 @@ const Register = () => {
     return emailRegex.test(email);
   };
   return (
-    <div className="flex h-screen items-center justify-center bg-[#8EA7E9]/20 p-6 md:p-0">
+    <div className="flex min-h-screen items-center justify-center bg-[#8EA7E9]/20 p-6 md:p-0">
       <div className="flex h-full w-full overflow-hidden rounded-xl shadow-md  md:h-[90%] md:w-[80%] lg:h-[80%]">
         <div className="relative hidden h-full items-center justify-center bg-[#8EA7E9] md:flex md:w-[60%] lg:w-[40%]">
           <div className="absolute -top-2 left-[20%] h-16 w-16 rounded-full bg-gradient-to-br  from-white via-[#9eb6f8] to-[#6585dd]"></div>

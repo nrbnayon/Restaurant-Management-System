@@ -22,7 +22,6 @@ const AllFoods = () => {
     axiosSecure
       .get(`/foods?name=${searchQuery}`)
       .then((res) => {
-        console.log("Response from /foods endpoint:", res.data);
         setAllFoods(res.data);
       })
       .catch((error) => {
