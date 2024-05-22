@@ -30,7 +30,7 @@ const TopSellingFood = () => {
         {topFoods.map((food) => (
           <div
             key={food._id}
-            className="mx-auto my-8 max-w-[350px] space-y-6 rounded-xl bg-white px-4 pb-8 pt-4 font-sans shadow-lg dark:bg-[#18181B] transition duration-300 ease-in-out transform hover:scale-105 hover:border-primary"
+            className="mx-auto w-[95%] my-8 md:max-w-[350px] space-y-6 rounded-xl bg-white px-4 pb-8 pt-4 font-sans shadow-lg dark:bg-[#18181B] transition duration-300 ease-in-out transform hover:scale-105 hover:border-primary"
           >
             <div className="relative flex h-48 w-full justify-center lg:h-[280px]">
               <div className="absolute left-4 right-4 top-4 flex items-center justify-between">

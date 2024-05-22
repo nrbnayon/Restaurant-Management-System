@@ -26,19 +26,13 @@ const OurLocation = () => {
             {location}
           </p>
         </div>
-        <div className="map-container">
+        <div className="map-container flex justify-center">
           <MapContainer
             center={[latitude, longitude]}
             zoom={13}
-            style={{
-              height: "60vh",
-              width: "60%",
-              borderRadius: "2rem",
-              position: "relative",
-            }}
-            className="mx-auto z-[1]"
+            className="h-[30vh] md:h-[60vh] w-3/4 md:w-2/3 lg:w-1/2 xl:w-[40%] rounded-2xl relative"
           >
-            <div className="map-wrapper z-[1]" style={{ position: "relative" }}>
+            <div className="map-wrapper z-[1] relative">
               <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

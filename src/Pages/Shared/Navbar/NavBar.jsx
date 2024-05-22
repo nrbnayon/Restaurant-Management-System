@@ -29,7 +29,7 @@ const NavBar = () => {
   const handleLogout = () => {
     logOut()
       .then(() => {})
-      .catch((error) => console.log(error));
+      .catch((error) => console.error(error));
   };
 
   const handleTheme = (e) => {
@@ -156,7 +156,7 @@ const NavBar = () => {
   );
   return (
     <div className="navbar bg-base-100 h-20 border-b-2 drop-shadow fixed z-50 bg-opacity-90">
-      <div className="navbar-start mr-28 md:mr-0 ">
+      <div className="navbar-start mr-10 sm:mr-28 md:mr-0 ">
         <div className="drawer drawer-end md:hidden ">
           <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
           <div className="drawer-content">
@@ -269,7 +269,7 @@ const NavBar = () => {
         <div className="flex justify-center items-center gap-3">
           {user ? (
             <>
-              <div className="dropdown dropdown-end">
+              <div>
                 <Tooltip title={`${user?.displayName}`} placement="left">
                   <div className="avatar online w-10 h-10 ">
                     <img
@@ -292,8 +292,8 @@ const NavBar = () => {
               to="/login"
               className={({ isActive }) =>
                 isActive
-                  ? "hidden md:flex btn text-pink-600 border border-primary"
-                  : "font-bold bg-sky-500 btn btn-outline  transition-all duration-300 group-hover:w-full"
+                  ? "flex btn text-pink-600 border border-primary"
+                  : "font-bold btn btn-outline  transition-all duration-300"
               }
             >
               LOGIN
