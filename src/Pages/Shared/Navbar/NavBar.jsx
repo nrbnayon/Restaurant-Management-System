@@ -7,7 +7,7 @@ import useAuth from "../../../hooks/useAuth";
 import { FaCartArrowDown } from "react-icons/fa";
 
 const NavBar = () => {
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState("dark");
   const { user, logOut } = useAuth();
   const [dropDownState, setDropDownState] = useState(false);
   const dropDownMenuRef = useRef();
@@ -33,7 +33,7 @@ const NavBar = () => {
   };
 
   const handleTheme = (e) => {
-    const newTheme = e.target.checked ? "dark" : "light";
+    const newTheme = e.target.checked ? "dark" : "dark";
     setTheme(newTheme);
     localStorage.setItem("theme", newTheme);
     document.querySelector("html").setAttribute("data-theme", newTheme);
@@ -152,10 +152,22 @@ const NavBar = () => {
           </ul>
         </details>
       )}
+      <li>
+        <NavLink
+          to="/contact"
+          className={({ isActive }) =>
+            isActive
+              ? "text-primary border border-primary"
+              : "font-bold bg-sky-500 transition-all duration-300 group-hover:w-full"
+          }
+        >
+          Contact Us
+        </NavLink>
+      </li>
     </>
   );
   return (
-    <div className="navbar bg-base-100 h-20 border-b-2 drop-shadow fixed z-50 bg-opacity-90">
+    <div className="navbar bg-base-100 h-20 border-b-2 drop-shadow fixed z-50 bg-opacity-90 max-w-7xl mx-auto overflow-hidden">
       <div className="navbar-start mr-10 sm:mr-28 md:mr-0 ">
         <div className="drawer drawer-end md:hidden ">
           <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />

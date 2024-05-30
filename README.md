@@ -1,10 +1,10 @@
 # eMenu Restaurant
 
-Welcome to eMenu Restaurant - where exceptional dining experiences await!
+Welcome to eMenu Restaurant, where exceptional dining experiences await!
 
-## [Live Site](https://e-menurestaurant.netlify.app/)
+## Live Site
 
-## Click Here For Live View: https://e-menurestaurant.netlify.app
+[Click Here For Live View](https://e-menurestaurant.netlify.app/)
 
 ## Assignment_ID: assignment_category_0005
 
@@ -18,38 +18,69 @@ Welcome to eMenu Restaurant - where exceptional dining experiences await!
 - **Visually Appealing**: Attention to design details, color contrast, and overall aesthetics to create a visually stunning website.
 - **Gallery Experience**: Showcase user-generated content in a captivating gallery section with interactive overlays.
 
-## Installation
+## Installation Steps
+
+### Prerequisites - Your need to download and install Git and Node on your desktop or laptop to run this project
+
+- [Git](https://git-scm.com/downloads)
+- [Node](https://nodejs.org/en/download/)
+- Download, install and read documents carefully
+
+Make sure you have the latest versions of both Git and Node on your computer.
+
+```bash
+node --version
+git --version
+```
+
+## Getting Started
 
 1. Clone the repository:
 
 ```bash
-git clone repository.git
+git clone https://github.com/Porgramming-Hero-web-course/b9a11-client-side-nrbnayon.git
 ```
 
 2. Install dependencies:
 
 ```bash
-cd eMenu-Restaurant
+cd b9a11-client-side-nrbnayon
 npm install
 ```
 
-3. Set up environment variables:
+# 3. Set up environment variables:
 
 Create a `.env` file in the root directory and add the following variables:
 
+## Usage of EmailJS
+
+Visit [emailjs.com](https://www.emailjs.com/) to create a new account for mail sending. In the free trial, you will get 200 emails per month. After setting up your `emailjs` account, add the following variables.
+
 ```plaintext
-PORT=5000
-MONGODB=your_mongodb_connection_string
-ACCESS_TOKEN_SECRET=your_jwt_secret_key
+VITE_PUBLIC_EMAILJS_SERVICE_ID=your_emailjs_service_id
+VITE_PUBLIC_EMAILJS_TEMPLATE_ID=your_emailjs_template_id
+VITE_PUBLIC_EMAILJS_PUBLIC_KEY=your_emailjs_public_id
+```
+
+## Setup Firebase
+
+```plaintext
+VITE_FIREBASE_API_KEY=your_firebase_api_key
+VITE_FIREBASE_AUTH_DOMAIN=your_firebase_auth_domain
+VITE_FIREBASE_PROJECT_ID=your_firebase_project_id
+VITE_FIREBASE_STORAGE_BUCKET=your_firebase_storage_bucket
+VITE_FIREBASE_MESSAGING_SENDER_ID=your_firebase_messaging_sender_id
+VITE_FIREBASE_APP_ID=your_firebase_app_id
+
 ```
 
 4. Start the server:
 
 ```bash
-npm start
+npm run dev
 ```
 
-5. Open the website in your browser at `http://localhost:5000`.
+5. Open the website in your browser at `http://localhost:5173`.
 
 ## Navbar
 
@@ -58,6 +89,7 @@ npm start
 - **Gallery**: Experience the visual delights shared by our community.
 - **Login/Logout**: Access your account for personalized experiences.
 - **My Profile**: Manage your profile and interactions.
+- **Contact Us**: Easily reach out to us for any inquiries, feedback, or assistance directly from the website interface.
 
 ## Homepage
 
@@ -111,15 +143,43 @@ npm start
 ## Optional Features
 
 - **Loading Spinner**: Enhance user experience with engaging loading animations.
-- **Framer Motion Animations**: Elevate website aesthetics with captivating animations.
-- **Tanstack Query Mutations**: Explore advanced query mutations for enhanced backend functionality.
 
-## Screenshots
+# Packages Used
 
-Here are some screenshots showcasing the features of eMenu Restaurant:
+| Package Name             |
+| ------------------------ |
+| @emailjs/browser         |
+| @emotion/react           |
+| @emotion/styled          |
+| @heroicons/react         |
+| @material-tailwind/react |
+| @mui/material            |
+| @mui/x-date-pickers      |
+| animate.css              |
+| aos                      |
+| axios                    |
+| dayjs                    |
+| firebase                 |
+| localforage              |
+| lodash                   |
+| lodash.debounce          |
+| lottie-react             |
+| match-sorter             |
+| prop-types               |
+| react                    |
+| react-awesome-button     |
+| react-awesome-reveal     |
+| react-dom                |
+| react-icons              |
+| react-leaflet            |
+| react-loader-spinner     |
+| react-router-dom         |
+| react-simple-typewriter  |
+| react-toastify           |
+| sweetalert2              |
+| swiper                   |
 
-![Homepage](/homepage.png)
-
+---
 
 ## Contributing
 
@@ -128,3 +188,8 @@ Contributions are welcome! Please open an issue or submit a pull request for any
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+```
+
+This README file includes all the necessary information and is formatted for readability.
+```
