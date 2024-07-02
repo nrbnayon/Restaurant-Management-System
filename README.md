@@ -6,8 +6,6 @@ Welcome to eMenu Restaurant, where exceptional dining experiences await!
 
 [Click Here For Live View](https://e-menurestaurant.netlify.app/)
 
-## Assignment_ID: assignment_category_0005
-
 ## Features
 
 - **Full-Stack MERN Development**: Utilizing MongoDB, Express.js, React.js, and Node.js to create a seamless and engaging website.
