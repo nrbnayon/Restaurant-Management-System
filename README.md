@@ -1,10 +1,9 @@
 # eMenu Restaurant
 
-Welcome to eMenu Restaurant, where exceptional dining experiences await!
-
+I developed a full-stack Restaurant Management website using the MERN stack (MongoDB, Express.js, React.js, and Node.js). The platform allows users to browse all food items, view detailed information on single items, and provides admins with functionalities to add, delete, and modify menu items. This project significantly enhanced the restaurant's online presence, improved customer interaction, and streamlined internal management processes.
 ## Live Site
 
-[Click Here For Live View](https://e-menurestaurant.netlify.app/)
+[Click Here](https://e-menurestaurant.netlify.app/)
 
 ## Features
 
